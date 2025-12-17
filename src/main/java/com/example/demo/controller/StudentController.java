@@ -6,6 +6,11 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.blind.annotation.*;
 
+import com.example.demo.entity.StudentEntity;
+import com.example.demo.service.StudentService;
+
+@RestControllerr
+@RequestMapping("/student")
 public class StudentController{
     @Autowired
     StudentService studentService;
@@ -51,7 +56,7 @@ public class StudentController{
 
         @DeleteMapping("/delete/{id}")
         public String deleteStudent(@PathVariable Long id){
-
+                Optional<StudentEntity> student = studentSevi
         }
     }
 }
