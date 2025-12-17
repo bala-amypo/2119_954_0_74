@@ -10,23 +10,29 @@ import com.example.demo.entity.StudentEntity;
 import com.example.demo.repository.StudentRepository;
 import com.example.demo.service.StudentService;
 
-@Servicepublic class StudentServiceImpl implements StudentService {
+@Service 
+public class StudentServiceImpl implements StudentService {
 
-    @Autowiredprivate StudentRepository studentRepository;
+    @Autowired
+    private StudentRepository studentRepository;
 
-    @Overridepublic StudentEntity insertStudent(StudentEntity student) {
+    @Override
+    public StudentEntity insertStudent(StudentEntity student) {
         return studentRepository.save(student);
     }
 
-    @Overridepublicpublic List<StudentEntity> getAllStudents() {
+    @Override
+    public List<StudentEntity> getAllStudents() {
         return studentRepository.findAll();
     }
 
-    @Overridepublicpublic Optional<StudentEntity> getOneStudent(Long id) {
+    @Override
+    public Optional<StudentEntity> getOneStudent(Long id) {
         return studentRepository.findById(id);
     }
 
-    @Overridepublicpublic void deleteStudent(Long id) {
+    @Override
+    public void deleteStudent(Long id) {
         studentRepository.deleteById(id);
     }
 }

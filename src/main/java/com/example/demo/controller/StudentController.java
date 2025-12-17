@@ -13,7 +13,8 @@ import com.example.demo.service.StudentService;
 @RequestMapping("/student")
 public class StudentController {
 
-    @Autowiredprivate StudentService studentService;
+    @Autowired
+    private StudentService studentService;
 
     @PostMapping("/post")
     public StudentEntity postStudent(@RequestBody StudentEntity st) {

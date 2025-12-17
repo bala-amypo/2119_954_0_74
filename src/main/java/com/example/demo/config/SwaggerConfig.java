@@ -7,9 +7,11 @@ import org.springframework.context.annotation.Configuration;
 
 import java.util.List;
 
-@Configurationpublic class OpenApiConfig {
+@Configuration
+public class OpenApiConfig {
 
-    @Beanpublic OpenAPI customOpenAPI() {
+    @Bean
+    public OpenAPI customOpenAPI() {
         return new OpenAPI()
         // You need to change the port as per your server
         .servers(List.of(
