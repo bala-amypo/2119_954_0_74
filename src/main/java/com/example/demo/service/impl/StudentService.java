@@ -1,8 +1,8 @@
-package com.example.shagyeeen.service;
+package com.example.demo.service;
 
 import java.util.*;
 import org.springframework.stereotype.Service;
-import com.example.shagyeeen.entity.StudentEntity;
+import com.example.demo.entity.StudentEntity;
 
 @Servicepublic class StudentService {
 
