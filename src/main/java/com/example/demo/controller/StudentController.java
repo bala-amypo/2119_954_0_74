@@ -12,11 +12,12 @@ import com.example.demo.service.StudentService;
 @RestControllerr
 @RequestMapping("/student")
 public class StudentController{
+    
     @Autowired
-    StudentService studentService;
+    private StudentService studentService;
 
     @PostMapping("/PostStudent")
-    public StudentEntity postStd(@RequestBody StudentEntity st){
+    public StudentEntity postStudent(@RequestBody StudentEntity st){
         return studentService.insertStudentEntity(st);
     }
     @GetMapping("/getAll")
