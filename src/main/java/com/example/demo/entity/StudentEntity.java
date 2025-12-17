@@ -13,11 +13,16 @@ public class StudentEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
     private String name;
     private String email;
     private LocalDate dob;
-    private Float cgpa;
+    private double cgpa;
 
-    public StudentEntity() {}
+    // ✅ Getters
+    public String getName() { return name; }
+    public String getEmail() { return email; }
+    public LocalDate getDob() { return dob; }
+    public double getCgpa() { return cgpa; }
+
+    // Optional: setters
 }
