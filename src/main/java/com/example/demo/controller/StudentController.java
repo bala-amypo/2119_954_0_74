@@ -3,8 +3,8 @@ package com.example.demo.controller;
 import java.util.List;
 import java.util.Optional;
 
-import org.springftramework.beans.factory.annotation.Autowired;
-
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.blind.annotation.*;
 
 public class StudentController{
     @Autowired
@@ -39,9 +39,19 @@ public class StudentController{
                 StudentEntity student = existing.get();
                 student.setName(st.getName());
                 student.setEmail(st.getEmail());
-                student
-            }           
+                student.setDob(st.getDob());
+                student.setCgpa(st.getCgpa());
+
+                studentService.insertStudent(student);
+                return  "Updated Successfully";
+            }
+            return "Student Not Found";           
                    
+        }
+
+        @DeleteMapping("/delete/{id}")
+        public String deleteStudent(@PathVariable Long id){
+
         }
     }
 }
