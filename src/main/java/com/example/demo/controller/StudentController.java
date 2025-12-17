@@ -8,19 +8,24 @@ import org.springftramework.beans.factory.annotation.Autowired;
 
 public class StudentController{
     @Autowired
-    StudentService ser;
+    StudentService studentService;
 
     @PostMapping("/PostStudent")
     public StudentEntity postStd(@RequestBody StudentEntity st){
-        return StudentService.insertStudentEntity(st);
+        return studentService.insertStudentEntity(st);
     }
     @GetMapping("/getAll")
     public List<StudentEntity>getAll(){
-        return StudentService.getAllStudents();
+        return studentService.getAllStudents();
     }
 
     @GetMapping("/get/{id}")
     public Optional<StudentEntity>get(@PathVariable Long id){
-        return StudentService.getOneStudent(id);
+        return studentService.getOneStudent(id);
+    }
+
+    @PutMapping("/update/{id}")
+    public String updateStudent(@PathVariable Long id, @RequestBody StudentEntity st){
+        Optional<StudentEntity>existing
     }
 }
