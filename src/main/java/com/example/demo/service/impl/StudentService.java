@@ -1,57 +1,31 @@
-package com.example.demo.controller;
+package com.example.shagyeeen.service;
 
-import java.util.List;
-import java.util.Optional;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
-
+import java.util.*;
+import org.springframework.stereotype.Service;
 import com.example.shagyeeen.entity.StudentEntity;
-import com.example.shagyeeen.service.StudentService;
 
-@RestControllerr@RequestMapping("/student")
-public class StudentController {
+@Servicepublic class StudentService {
 
-    @Autowiredprivate StudentService studentService;
+    private final Map<Long, StudentEntity> store = new HashMap<>();
+    private long counter = 1;
 
-    @PostMapping("/post")
-    public StudentEntity postStudent(@RequestBody StudentEntity st) {
-        return studentService.insertStudent(st);
+    public StudentEntity insertStudent(StudentEntity student) {
+        if (student.getId() == null) {
+            student.setId(counter++);
+        }
+        store.put(student.getId(), student);
+        return student;
     }
 
-    @GetMapping("/getAll")
     public List<StudentEntity> getAllStudents() {
-        return studentService.getAllStudents();
+        return new ArrayList<>(store.values());
     }
 
-    @GetMapping("/get/{id}")
-    public Optional<StudentEntity> getStudent(@PathVariable Long id) {
-        return studentService.getOneStudent(id);
+    public Optional<StudentEntity> getOneStudent(Long id) {
+        return Optional.ofNullable(store.get(id));
     }
 
-    @PutMapping("/update/{id}")
-    public String updateStudent(@PathVariable Long id, @RequestBody StudentEntity st) {
-        Optional<StudentEntity> existing = studentService.getOneStudent(id);
-
-        if (existing.isPresent()) {
-            StudentEntity student = existing.get();
-            student.setName(st.getName());
-            student.setEmail(st.getEmail());
-            student.setDob(st.getDob());
-            student.setCgpa(st.getCgpa());
-
-            studentService.insertStudent(student);
-            return "Updated Successfully";
-        }
-        return "Student Not Found";
-    }
-
-    @DeleteMapping("/delete/{id}")
-    public String deleteStudent(@PathVariable Long id) {
-        if (studentService.getOneStudent(id).isPresent()) {
-            studentService.deleteStudent(id);
-            return "Deleted Successfully";
-        }
-        return "Student Not Found";
+    public void deleteStudent(Long id) {
+        store.remove(id);
     }
 }
