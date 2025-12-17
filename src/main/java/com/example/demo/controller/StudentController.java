@@ -57,7 +57,11 @@ public class StudentController{
 
         @DeleteMapping("/delete/{id}")
         public String deleteStudent(@PathVariable Long id){
-                Optional<StudentEntity> student = studentSevi
+            if(studentService.getOneStudent(id).isPresent()){
+                studentService.deleteStudent(id);
+                return "Deleted Successfully";
+            }
+            return "Student Not Found";
         }
     }
 }
