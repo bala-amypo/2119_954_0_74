@@ -12,6 +12,13 @@ public class StudentController{
 
     @PostMapping("/PostStudent")
     public StudentEntity postStd(@RequestBody StudentEntity st){
-        return StudentService.insertStudent
+        return StudentService.insertStudentEntity(st);
     }
+    @GetMapping("/getAll")
+    public List<StudentEntity>getAll(){
+        return StudentService.getAllStudents();
+    }
+
+    @GetMapping("/get/{id}")
+    public Optional<StudentEntity>get(@PathVariable)
 }
