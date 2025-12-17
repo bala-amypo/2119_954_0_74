@@ -14,20 +14,19 @@ import com.example.demo.service.StudentService;
 
     @Autowiredprivate StudentRepository studentRepository;
 
-    @Override
-    public StudentEntity insertStudent(StudentEntity student) {
+    @Overridepublic StudentEntity insertStudent(StudentEntity student) {
         return studentRepository.save(student);
     }
 
-    @Overridepublic List<StudentEntity> getAllStudents() {
+    @Overridepublicpublic List<StudentEntity> getAllStudents() {
         return studentRepository.findAll();
     }
 
-    @Overridepublic Optional<StudentEntity> getOneStudent(Long id) {
+    @Overridepublicpublic Optional<StudentEntity> getOneStudent(Long id) {
         return studentRepository.findById(id);
     }
 
-    @Overridepublic void deleteStudent(Long id) {
+    @Overridepublicpublic void deleteStudent(Long id) {
         studentRepository.deleteById(id);
     }
 }
