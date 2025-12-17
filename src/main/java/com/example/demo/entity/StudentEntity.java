@@ -1,11 +1,15 @@
 package com.example.demo.entity;
 
 import java.time.LocalDate;
-import jakarta.persistence.*;
 
-@entitypublic class StudentEntity {
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 
-    @id@GeneratedValue(strategy = GenerationType.IDENTITY)
+@Entitypublic class StudentEntity {
+
+    @Id@GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String name;
@@ -13,21 +17,46 @@ import jakarta.persistence.*;
     private LocalDate dob;
     private Float cgpa;
 
-    public StudentEntity() {}
+    public StudentEntity() {
+    }
 
-    // getters & setters
-    public Long getId() { return id; }
-    public void setId(Long id) { this.id = id; }
+    public Long getId() {
+        return id;
+    }
 
-    public String getName() { return name; }
-    public void setName(String name) { this.name = name; }
+    public void setId(Long id) {
+        this.id = id;
+    }
 
-    public String getEmail() { return email; }
-    public void setEmail(String email) { this.email = email; }
+    public String getName() {
+        return name;
+    }
 
-    public LocalDate getDob() { return dob; }
-    public void setDob(LocalDate dob) { this.dob = dob; }
+    public void setName(String name) {
+        this.name = name;
+    }
 
-    public Float getCgpa() { return cgpa; }
-    public void setCgpa(Float cgpa) { this.cgpa = cgpa; }
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public LocalDate getDob() {
+        return dob;
+    }
+
+    public void setDob(LocalDate dob) {
+        this.dob = dob;
+    }
+
+    public Float getCgpa() {
+        return cgpa;
+    }
+
+    public void setCgpa(Float cgpa) {
+        this.cgpa = cgpa;
+    }
 }
