@@ -26,6 +26,19 @@ public class StudentController{
 
     @PutMapping("/update/{id}")
     public String updateStudent(@PathVariable Long id, @RequestBody StudentEntity st){
-        Optional<StudentEntity>existing
+        Optional<StudentEntity> existing = studentService.getOneStudent(id);
+
+        if(existing.iSPresent()){
+            StudentEntity student =existing.get();
+            student.setName(st.getName());
+            student.setEmail(st.getEmail());
+            student.setDob(st.getDob());
+            student.seCgpa(st.getCgpa());
+
+            if(existing.isPresent()){
+                StudentEntity student = existing
+            }           
+                   
+        }
     }
 }
