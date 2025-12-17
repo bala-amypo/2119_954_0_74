@@ -3,12 +3,13 @@ package com.example.demo.controller;
 import java.util.List;
 import java.util.Optional;
 
-import org.springftramework
+import org.springftramework.beans.factory.annotation.Autowired;
 
 
 public class StudentController{
     @Autowired
     StudentService ser;
 
-    @Post
+    @PostMapping("/PostStudent")
+    public StudentEntity postStd(@RequestBody StudentController)
 }
