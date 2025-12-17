@@ -11,5 +11,7 @@ public class StudentController{
     StudentService ser;
 
     @PostMapping("/PostStudent")
-    public StudentEntity postStd(@RequestBody StudentController)
+    public StudentEntity postStd(@RequestBody StudentEntity st){
+        return StudentService.insertStudent
+    }
 }
