@@ -1,31 +1,16 @@
 package com.example.demo.service;
 
-import java.util.*;
-import org.springframework.stereotype.Service;
+import java.util.List;
+import java.util.Optional;
 import com.example.demo.entity.StudentEntity;
 
-@Servicepublic class StudentService {
+public interface StudentService {
 
-    private final Map<Long, StudentEntity> store = new HashMap<>();
-    private long counter = 1;
+    StudentEntity insertStudent(StudentEntity student);
 
-    public StudentEntity insertStudent(StudentEntity student) {
-        if (student.getId() == null) {
-            student.setId(counter++);
-        }
-        store.put(student.getId(), student);
-        return student;
-    }
+    List<StudentEntity> getAllStudents();
 
-    public List<StudentEntity> getAllStudents() {
-        return new ArrayList<>(store.values());
-    }
+    Optional<StudentEntity> getOneStudent(Long id);
 
-    public Optional<StudentEntity> getOneStudent(Long id) {
-        return Optional.ofNullable(store.get(id));
-    }
-
-    public void deleteStudent(Long id) {
-        store.remove(id);
-    }
+    void deleteStudent(Long id);
 }
