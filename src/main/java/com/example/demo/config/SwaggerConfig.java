@@ -15,3 +15,6 @@ import org.springframework.context.annotation.Configuration;
         .description("API documentation for Demo project"));
     }
 }
+)
+    }
+}

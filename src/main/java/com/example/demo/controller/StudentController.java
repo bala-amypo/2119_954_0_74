@@ -13,36 +13,7 @@ import com.example.demo.service.StudentService;
 @RequestMapping("/student")
 public class StudentController {
 
-    @Autowirede.getAllStudents();
-}
-
-@GetMapping("/get/{id}")
-public Optional<StudentEntity> getStudent(@PathVariable Long id) {
-    return studentService.getOneStudent(id);
-}
-
-@PutMapping("/update/{id}")
-public String updateStudent(@PathVariable Long id, @RequestBody StudentEntity st) {
-    Optional<StudentEntity> existing = studentService.getOneStudent(id);
-    
-    if (existing.isPresent()) {
-        StudentEntity student = existing.get();
-        student.setName(st.getName());
-        student.setEmail(st.getEmail());
-        student.setDob(st.getDob());
-        student.setCgpa(st.getCgpa());
-        
-        studentService.insertStudent(student);
-        return "Updated Successfully";
-    }
-    return "Student Not Found";
-}
-
-@DeleteMapping("/delete/{id}")
-public String deleteStudent(@PathVariable Long id) {
-    if (studentService.getOneStudent(id).isPresent()) {
-        studentService.deleteStudent(id);
-        return "Deleted Sucprivate StudentService studentService;
+    @Autowiredprivate StudentService studentService;
 
     @PostMapping("/post")
     public StudentEntity postStudent(@RequestBody StudentEntity st) {
@@ -51,7 +22,37 @@ public String deleteStudent(@PathVariable Long id) {
 
     @GetMapping("/getAll")
     public List<StudentEntity> getAllStudents() {
-        return studentServic
+        return studentService.getAllStudents();
     }
+
+    @GetMapping("/get/{id}")
+    public Optional<StudentEntity> getStudent(@PathVariable Long id) {
+        return studentService.getOneStudent(id);
+    }
+
+    @PutMapping("/update/{id}")
+    public String updateStudent(@PathVariable Long id, @RequestBody StudentEntity st) {
+        Optional<StudentEntity> existing = studentService.getOneStudent(id);
+
+        if (existing.isPresent()) {
+            StudentEntity student = existing.get();
+            student.setName(st.getName());
+            student.setEmail(st.getEmail());
+            student.setDob(st.getDob());
+            student.setCgpa(st.getCgpa());
+
+            studentService.insertStudent(student);
+            return "Updated Successfully";
+        }
+        return "Student Not Found";
+    }
+
+    @DeleteMapping("/delete/{id}")
+    public String deleteStudent(@PathVariable Long id) {
+        if (studentService.getOneStudent(id).isPresent()) {
+            studentService.deleteStudent(id);
+            return "Deleted Successfully";
+        }
+        return "Student Not Found";
     }
 }
