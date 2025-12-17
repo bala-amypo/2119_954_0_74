@@ -1,3 +1,14 @@
-package com.example.practice.controller;
+package com.example.demo.controller;
 
-public class student
+import java.util.List;
+import java.util.Optional;
+
+import org.springftramework
+
+
+public class StudentController{
+    @Autowired
+    StudentService ser;
+
+    @Post
+}
