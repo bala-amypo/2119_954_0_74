@@ -36,7 +36,10 @@ public class StudentController{
             student.seCgpa(st.getCgpa());
 
             if(existing.isPresent()){
-                StudentEntity student = existing
+                StudentEntity student = existing.get();
+                student.setName(st.getName());
+                student.setEmail(st.getEmail());
+                student
             }           
                    
         }
