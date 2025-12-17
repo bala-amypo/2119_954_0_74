@@ -20,5 +20,7 @@ public class StudentController{
     }
 
     @GetMapping("/get/{id}")
-    public Optional<StudentEntity>get(@PathVariable)
+    public Optional<StudentEntity>get(@PathVariable Long id){
+        return StudentService.getOneStudent(id);
+    }
 }
