@@ -1,65 +1,41 @@
-package com.example.demo.controller;
+user.java
 
-import java.util.List;
-import java.util.Optional;
+package com.example.demo.entity;
 
-import org.springframework.web.bind.annotation.*;
+import jakarta.persistence.*;
 
-import com.example.demo.entity.UserEntity;
-
-import com.example.demo.service.UserService;
-
-
-@RestController
-@RequestMapping("/auth") 
+@Entity
+@Table(name = "users", uniqueConstraints = {
+        @UniqueConstraint(columnNames = "email")
+})
 public class User {
 
-    private final User studentService;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
-    public StudentController(StudentService studentService) {
-        this.studentService = studentService;
-    }
+    private String name;
 
-    @PostMapping
-    public Student postStudent(@RequestBody Student st) {
-        return studentService.insertStudent(st);
-    }
+    @Column(nullable = false, unique = true)
+    private String email;
 
-    @GetMapping
-    public List<Student> getAll() {
-        return studentService.getAllStudents();
-    }
+    private String password;
 
-    @GetMapping("/{id}")
-    public Optional<Student> getById(@PathVariable Long id) {
-        return studentService.getOneStudent(id);
-    }
+    private String role; // USER / ADMIN
 
-    @PutMapping("/{id}")
-    public String updateStudent(@PathVariable Long id, @RequestBody Student st) {
-        Optional<Student> studentOpt = studentService.getOneStudent(id);
+    // getters & setters
+    public Long getId() { return id; }
+    public void setId(Long id) { this.id = id; }
 
-        if (studentOpt.isPresent()) {
-            Student student = studentOpt.get();
-            student.setName(st.getName());
-            student.setEmail(st.getEmail());
-            student.setCgpa(st.getCgpa());
-            student.setDob(st.getDob());
+    public String getName() { return name; }
+    public void setName(String name) { this.name = name; }
 
-            studentService.insertStudent(student);
-            return "Updated Successfully ";
-        }
-        return "Student Not Found ";
-    }
+    public String getEmail() { return email; }
+    public void setEmail(String email) { this.email = email; }
 
-    @DeleteMapping("/{id}")
-    public String deleteStudent(@PathVariable Long id) {
-        Optional<Student> student = studentService.getOneStudent(id);
+    public String getPassword() { return password; }
+    public void setPassword(String password) { this.password = password; }
 
-        if (student.isPresent()) {
-            studentService.deleteStudent(id);
-            return "Deleted Successfully ";
-        }
-        return "Student Not Found ";
-    }
+    public String getRole() { return role; }
+    public void setRole(String role) { this.role = role; }
 }
