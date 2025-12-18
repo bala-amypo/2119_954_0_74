@@ -11,7 +11,7 @@ import com.example.demo.service.UserService;
 
 
 @RestController
-@RequestMapping("/students") 
+@RequestMapping("/auth") 
 public class User {
 
     private final User studentService;
