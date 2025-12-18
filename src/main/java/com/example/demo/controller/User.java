@@ -6,14 +6,15 @@ import java.util.Optional;
 import org.springframework.web.bind.annotation.*;
 
 import com.example.demo.entity.UserEntity;
-import com.example.demo.entity.VehicleEntity;
+
 import com.example.demo.service.UserService;
+
 
 @RestController
 @RequestMapping("/students") 
-public class StudentController {
+public class User {
 
-    private final StudentService studentService;
+    private final User studentService;
 
     public StudentController(StudentService studentService) {
         this.studentService = studentService;
