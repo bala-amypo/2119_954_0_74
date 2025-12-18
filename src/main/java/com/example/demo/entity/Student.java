@@ -15,11 +15,10 @@ import jakarta.persistence.Id;
 public class Student {
 @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Lon
-    g id;
+    private Long id;
     private String name;
     private String email;
-    private LocalDate dob;77
+    private LocalDate dob;
     private Float cgpa;
 
 
