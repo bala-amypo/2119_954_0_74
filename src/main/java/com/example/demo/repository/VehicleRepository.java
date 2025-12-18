@@ -1,4 +1,3 @@
-VehicleRepo.java
 
 package com.example.demo.repository;
 

@@ -1,4 +1,3 @@
-SwaggerConfig.java
 
 package com.example.demo.config;
 
