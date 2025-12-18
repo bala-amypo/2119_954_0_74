@@ -1,5 +1,3 @@
-
-
 package com.example.demo.controller;
 
 import java.util.List;
@@ -20,25 +18,21 @@ public class StudentController {
         this.studentService = studentService;
     }
 
-    // CREATE
     @PostMapping
     public Student postStudent(@RequestBody Student st) {
         return studentService.insertStudent(st);
     }
 
-    // READ ALL
     @GetMapping
     public List<Student> getAll() {
         return studentService.getAllStudents();
     }
 
-    // READ ONE
     @GetMapping("/{id}")
     public Optional<Student> getById(@PathVariable Long id) {
         return studentService.getOneStudent(id);
     }
 
-    // UPDATE
     @PutMapping("/{id}")
     public String updateStudent(@PathVariable Long id, @RequestBody Student st) {
         Optional<Student> studentOpt = studentService.getOneStudent(id);
@@ -51,20 +45,19 @@ public class StudentController {
             student.setDob(st.getDob());
 
             studentService.insertStudent(student);
-            return "Updated Successfully ✅";
+            return "Updated Successfully ";
         }
-        return "Student Not Found ❌";
+        return "Student Not Found ";
     }
 
-    // DELETE
     @DeleteMapping("/{id}")
     public String deleteStudent(@PathVariable Long id) {
         Optional<Student> student = studentService.getOneStudent(id);
 
         if (student.isPresent()) {
             studentService.deleteStudent(id);
-            return "Deleted Successfully ✅";
+            return "Deleted Successfully ";
         }
-        return "Student Not Found ❌";
+        return "Student Not Found ";
     }
 }
