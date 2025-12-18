@@ -1,36 +1,35 @@
-
+UserServiceImpl.java
 
 package com.example.demo.service;
 
-import java.util.*;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
-import com.example.demo.entity.Student;
+import com.example.demo.entity.User;
+import com.example.demo.repository.UserRepository;
 
 @Service
-public class StudentServiceImpl implements StudentService {
+public class UserServiceImpl implements UserService {
 
-    private final Map<Long, Student> store = new HashMap<>();
-    private long counter = 1;
+    private final UserRepository userRepo;
+    private final BCryptPasswordEncoder encoder;
 
-    @Override
-    public Student insertStudent(Student st) {
-        st.setId(counter++);
-        store.put(st.getId(), st);
-        return st;
+    public UserServiceImpl(UserRepository userRepo,
+                           BCryptPasswordEncoder encoder) {
+        this.userRepo = userRepo;
+        this.encoder = encoder;
     }
 
     @Override
-    public List<Student> getAllStudents() {
-        return new ArrayList<>(store.values());
-    }
+    public User registerUser(User user) {
 
-    @Override
-    public Optional<Student> getOneStudent(Long id) {
-        return Optional.ofNullable(store.get(id));
-    }
+        // default role
+        if (user.getRole() == null) {
+            user.setRole("USER");
+        }
 
-    @Override
-    public void deleteStudent(Long id) {
-        store.remove(id);
+        // encrypt password
+        user.setPassword(encoder.encode(user.getPassword()));
+
+        return userRepo.save(user);
     }
 }

@@ -1,41 +1,24 @@
+VehicleController.java
 
-package com.example.demo.entity;
+package com.example.demo.controller;
 
-import jakarta.persistence.*;
+import org.springframework.web.bind.annotation.*;
+import com.example.demo.entity.Vehicle;
+import com.example.demo.service.VehicleService;
 
-@Entity
-@Table(uniqueConstraints = {
-        @UniqueConstraint(columnNames = "vehicleNumber")
-})
-public class Vehicle {
+@RestController
+@RequestMapping("/vehicles")
+public class VehicleController {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private final VehicleService vehicleService;
 
-    @ManyToOne
-    @JoinColumn(name = "user_id", nullable = false)
-    private User user;
+    public VehicleController(VehicleService vehicleService) {
+        this.vehicleService = vehicleService;
+    }
 
-    @Column(nullable = false, unique = true)
-    private String vehicleNumber;
-
-    private Double capacityKg;
-    private Double fuelEfficiency; // km per liter
-
-    // getters & setters
-    public Long getId() { return id; }
-    public void setId(Long id) { this.id = id; }
-
-    public User getUser() { return user; }
-    public void setUser(User user) { this.user = user; }
-
-    public String getVehicleNumber() { return vehicleNumber; }
-    public void setVehicleNumber(String vehicleNumber) { this.vehicleNumber = vehicleNumber; }
-
-    public Double getCapacityKg() { return capacityKg; }
-    public void setCapacityKg(Double capacityKg) { this.capacityKg = capacityKg; }
-
-    public Double getFuelEfficiency() { return fuelEfficiency; }
-    public void setFuelEfficiency(Double fuelEfficiency) { this.fuelEfficiency = fuelEfficiency; }
+    @PostMapping("/{userId}")
+    public Vehicle addVehicle(@PathVariable Long userId,
+                              @RequestBody Vehicle vehicle) {
+        return vehicleService.addVehicle(userId, vehicle);
+    }
 }
