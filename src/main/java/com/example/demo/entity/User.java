@@ -1,41 +1,38 @@
-
 package com.example.demo.entity;
 
 import jakarta.persistence.*;
 
 @Entity
-@Table(uniqueConstraints = {
-        @UniqueConstraint(columnNames = "vehicleNumber")
-})
-public class Vehicle {
+public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne
-    @JoinColumn(name = "user_id", nullable = false)
-    private User user;
+    private String username;
+    private String password;
 
-    @Column(nullable = false, unique = true)
-    private String vehicleNumber;
+    public Long getId() {
+        return id;
+    }
 
-    private Double capacityKg;
-    private Double fuelEfficiency; // km per liter
+    public void setId(Long id) {
+        this.id = id;
+    }
 
-    // getters & setters
-    public Long getId() { return id; }
-    public void setId(Long id) { this.id = id; }
+    public String getUsername() {
+        return username;
+    }
 
-    public User getUser() { return user; }
-    public void setUser(User user) { this.user = user; }
+    public void setUsername(String username) {
+        this.username = username;
+    }
 
-    public String getVehicleNumber() { return vehicleNumber; }
-    public void setVehicleNumber(String vehicleNumber) { this.vehicleNumber = vehicleNumber; }
+    public String getPassword() {
+        return password;
+    }
 
-    public Double getCapacityKg() { return capacityKg; }
-    public void setCapacityKg(Double capacityKg) { this.capacityKg = capacityKg; }
-
-    public Double getFuelEfficiency() { return fuelEfficiency; }
-    public void setFuelEfficiency(Double fuelEfficiency) { this.fuelEfficiency = fuelEfficiency; }
+    public void setPassword(String password) {
+        this.password = password;
+    }
 }
